@@ -97,7 +97,7 @@ sx.global().command(["hello world"], async (api) => {
 
 See more commands in the help
 
-*show help* *show help browser*  *show help autoHotKey* *show help clipboard* 
+*show help* *show help browser*  *show help autoHotKey* *show help clipboard* *show help json api* *show help utils*
 
 [https://serenade.ai/docs](https://serenade.ai/docs)
 

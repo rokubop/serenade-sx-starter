@@ -271,6 +271,12 @@ const openAny = async (url: string) => {
     return;
   }
 
+  if (url.endsWith(".md")) {
+    const md = await fs.readFile(url, "utf8");
+    await displayMarkdown(md);
+    return;
+  }
+
   if (!fs.existsSync(url)) {
     await displayFileNotFound(url);
     return;
