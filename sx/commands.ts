@@ -10,7 +10,7 @@ import "sx/user-data-api/text/commands";
 import "sx/user-data-api/mouse-positions/commands";
 import "sx/generators/add-hotkey/commands";
 import browser from "sx/browser";
-import { formatAsKebabCase, npmRunBuild, openPathInVSCode } from "sx/utils";
+import { npmRunBuild, openPathInVSCode } from "sx/utils";
 import { getConfig } from "./config";
 
 const { command } = sx.global();
@@ -93,7 +93,7 @@ command(config["commands.help"], async (api) => {
   ["macros", "macros"],
   ["mouse positions", "mouse-positions"],
   ["overview", "overview"],
-  ["text", "text"],
+  ["text commands", "text-commands"],
   ["utils", "utils"],
 ].forEach(([phrase, fileName]) => {
   command(
@@ -105,29 +105,13 @@ command(config["commands.help"], async (api) => {
         "help",
         `${fileName}.md`
       );
-      const md = await fs.readFile(
-        path.join(process.env.ROOT_DIR, "sx", "help", `${fileName}.md`),
-        "utf8"
-      );
-      await showHelp(md);
+      try {
+        const md = await fs.readFile(helpFile, "utf8");
+        await showHelp(md);
+      } catch (e) {
+        await browser.displayFileNotFound(helpFile);
+      }
     },
     { autoExecute: true }
   );
-});
-
-command("show help <%name%>", async (api, matches) => {
-  const fileName = formatAsKebabCase(matches.name);
-  if (
-    fs.existsSync(
-      path.join(process.env.ROOT_DIR, "sx", "help", `${fileName}.md`)
-    )
-  ) {
-    const md = await fs.readFile(
-      path.join(process.env.ROOT_DIR, "sx", "help", `${fileName}.md`),
-      "utf8"
-    );
-    await showHelp(md);
-  } else {
-    await browser.displayFileNotFound(matches.name);
-  }
 });

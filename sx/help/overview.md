@@ -45,6 +45,10 @@ You must build commands before they are active. This is done by running
 This will output a minified file to `~/.serenade/scripts/sx.min.js`. You can also say
 *build commands*
 
+## Example commands
+
+You can see examples in *show help commands* or find full files at [https://github.com/rokubop/serenade-sx-example](https://github.com/rokubop/serenade-sx-example/tree/main/src)
+
 ## Javascript or Typescript?
 You can use `.js` for your files, but it is recommended to use `.ts`. 
 Writing your commands in typescript will give you error checking BEFORE

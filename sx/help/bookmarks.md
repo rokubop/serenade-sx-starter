@@ -20,3 +20,5 @@ You can edit bookmarks by saying *{{commands.bookmarks.edit}}*.
 | *{{commands.bookmarks.open}}* | Open the bookmark in the browser |
 | *{{commands.bookmarks.show}}* | Show the bookmarks in the browser |
 | *{{commands.bookmarks.edit}}* | Opens `user-data/bookmarks.json` in VSCode |
+
+You can change these command triggers in `src/sx-config.ts`

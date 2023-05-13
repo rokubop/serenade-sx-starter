@@ -17,10 +17,7 @@ AutoHotKey has different syntax for v1 and v2 scripts.
 You get two .exe files when you download AutoHotKey - v1 and v2
 Be careful to use the right .exe for the right script.
 
-You can find scripts online: [https://www.autohotkey.com/docs/v2/scripts/](https://www.autohotkey.com/docs/v2/scripts/)
-
 ```js
-// Example
 import { autoHotKey } from 'sx'
 
 await autoHotKey.pressKey("Left", ["LWin", "Shift"]);
@@ -30,6 +27,12 @@ await autoHotKey.scroll("down", [], 6);
 await autoHotKey.runAutoHotkeyScriptV2(path.join(process.env.ROOT_DIR, "src", "autoHotKey", "v2", "test.ahk"), ["param1", "param2"]);
 await autoHotKey.runAutoHotkeyScriptV1(path.join(process.env.ROOT_DIR, "src", "autoHotKey", "v1", "test.ahk"), ["param1", "param2"]);
 ```
+
+---
+
+### Example:
+Here is an example of a full file for sx AutoHotKey commands: [https://github.com/rokubop/serenade-sx-example/blob/main/src/global/autoHotkey.ts](https://github.com/rokubop/serenade-sx-example/blob/main/src/global/autoHotkey.ts)
+
 
 ---
 
@@ -43,6 +46,14 @@ await autoHotKey.runAutoHotkeyScriptV1(path.join(process.env.ROOT_DIR, "src", "a
 | `autoHotKey.runAutoHotkeyScriptV2(absolutePath: string, params: string[])` | run a V2 version `.ahk` script file
 
 ---
+
+### Third party
+
+You can also find AutoHotKey scripts online: [https://www.autohotkey.com/docs/v2/scripts/](https://www.autohotkey.com/docs/v2/scripts/)
+
+---
+
+### types 
 
 ```js
 const modifiers = [

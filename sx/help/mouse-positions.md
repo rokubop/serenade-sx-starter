@@ -9,3 +9,7 @@
 | *{{commands.mousePosition.goTo}}* | Go to a mouse position |
 | *{{commands.mousePosition.goToAndClick}}* | Go to a mouse position and click |
 | *{{commands.mousePosition.edit}}* | Open in VSCode `user-data/mouse-positions.json` |
+
+---
+
+You can change these command triggers in `src/sx-config.ts`

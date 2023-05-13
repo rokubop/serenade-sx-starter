@@ -37,3 +37,7 @@ Say *{{commands.apps.showCommands[0]}}*. This will display all commands for the 
 | *{{commands.apps.showCommands}}* | Show the commands for the focused app in the browser |
 | *{{commands.apps.showAllCommands}}* | Show all commands in the browser |
 | *{{commands.apps.showGlobalCommands}}* | Show all global commands in the browser |
+
+---
+
+You can change these command triggers in `src/sx-config.ts`

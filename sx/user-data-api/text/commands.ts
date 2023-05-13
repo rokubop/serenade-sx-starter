@@ -1,4 +1,4 @@
-import sx from "sx";
+import sx, { browser } from "sx";
 import { getClipboard } from "sx/clipboard";
 import { textCommandsData, runCommandsData } from "./api";
 import { forEachKeyVal, openPathInVSCode } from "sx/utils";
@@ -28,6 +28,14 @@ command(config["commands.text.edit"], async (api) => {
 command(config["commands.run.edit"], async (api) => {
   await openPathInVSCode(config.vsCodeWorkspacePath);
   await openPathInVSCode(runCommandsDataPath);
+});
+
+command(config["commands.text.show"], async (api) => {
+  await browser.open(textCommandsDataPath);
+});
+
+command(config["commands.run.show"], async (api) => {
+  await browser.open(runCommandsDataPath);
 });
 
 forEachKeyVal(runCommandsData.getAllSync(), (trigger, text) => {

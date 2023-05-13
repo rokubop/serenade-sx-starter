@@ -61,3 +61,7 @@ You can say *{{commands.macros.urlEdit[0]}}* to edit the macro.
 
 Anytime you are on that URL
 1. "{{commands.macros.play}}"
+
+---
+
+You can change these command triggers in `src/sx-config.ts`

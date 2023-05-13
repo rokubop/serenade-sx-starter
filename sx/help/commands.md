@@ -96,7 +96,7 @@ sx.global().command(["hello world"], async (api) => {
 ---
 
 You can find serenade-sx example commands for VSCode, Chrome, AutoHotKey, git, npm, etc here:
-[https://github.com/rokubop/serenade-sx-example/tree/main/src](https://github.com/rokubop/serenade-sx-example/tree/main/src)
+[https://github.com/rokubop/serenade-sx-example](https://github.com/rokubop/serenade-sx-example/tree/main/src)
 
 *show help* *show help browser*  *show help autoHotKey* *show help clipboard* *show help json api* *show help utils*
 
