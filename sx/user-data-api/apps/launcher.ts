@@ -2,6 +2,7 @@ import { appsApi, AppNameId } from "@/user-data-api/apps/api";
 import { Api, AppConfig, LaunchType } from "sx/types";
 import { entriesOf } from "sx/utils";
 import { getConfig } from "sx/config";
+import browser from "sx/browser";
 
 const config = getConfig();
 
@@ -35,6 +36,10 @@ const defaultCommands = (appConfig: AppConfig): AppCommands => {
       let launchCommand = config["appConfig.launchTypes"][appConfig.launchType];
       if (launchCommand === undefined) {
         launchCommand = config["appConfig.launchTypes"].default;
+        await browser.displayErrorHtml(`
+          <h2>Launch type ${appConfig.launchType} not found for app ${appConfig.appNameId}.</h2>
+          <p>Check your <code>src/sx-config.ts</code> or <code>user-data/apps.json</code> file to make sure you have a valid launch type.</p>
+        `);
         console.log(
           `Launch type ${appConfig.launchType} not found for app ${appConfig.appNameId}. 
             Check your src/sx-config.ts or user-data/apps.json file to make sure you have a valid launch type.`
@@ -51,6 +56,10 @@ const defaultCommands = (appConfig: AppConfig): AppCommands => {
       let focusCommand = config["appConfig.focusTypes"][appConfig.focusType];
       if (focusCommand === undefined) {
         focusCommand = config["appConfig.focusTypes"].default;
+        await browser.displayErrorHtml(`
+          <h2>Launch type ${appConfig.launchType} not found for app ${appConfig.appNameId}.</h2>
+          <p>Check your <code>src/sx-config.ts</code> or <code>user-data/apps.json</code> file to make sure you have a valid launch type.</p>
+        `);
         console.log(
           `Focus type ${appConfig.focusType} not found for app ${appConfig.appNameId}.
           Check your src/sx-config.ts or user-data/apps.json file to make sure you have a valid focus type.`

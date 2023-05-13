@@ -1,5 +1,6 @@
 import { execa } from "execa";
 import path from "path";
+import browser from "sx/browser";
 
 const autoHotkeyScripts = path.join(process.env.ROOT_DIR, "sx", "autoHotKey");
 
@@ -69,6 +70,10 @@ async function runAutoHotkeyScript(
   if (exePath && fileName) {
     await execa(exePath, [`${fileName}`, ...params], options);
   } else {
+    await browser.displayErrorHtml(`
+      <h2>Tried to run AutoHotkey script but could not find exe or path.</h2>
+      <command>show help autoHotKey</command>
+    `);
     console.log(
       "Tried to run AutoHotkey script but could not find exe or path."
     );

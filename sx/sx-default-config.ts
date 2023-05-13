@@ -24,6 +24,7 @@ export const defaultConfig: Config = {
   "commands.bookmarks.open": (name) => [`open ${name}`],
   "commands.bookmarks.edit": ["edit bookmarks"],
   "commands.bookmarks.show": ["show bookmarks", "open bookmarks"],
+  "commands.help": ["show help"],
   "commands.hotkeys.new": [
     "record hot key",
     "record shortcut",

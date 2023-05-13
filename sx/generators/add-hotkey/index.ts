@@ -35,12 +35,13 @@ export async function addPressKeyCommand(
       .replace("__COMMAND_NAME__", trigger)
       .replace("__KEY_AND_MODIFIERS__", keyAndModifiers);
 
-    const [appCommandsPath] = await getOrCreateApp(appConfig);
+    const [appCommandsPath, createdNewFile] = await getOrCreateApp(appConfig);
 
-    // fs.appendFileSync(appCommandsPath, newCommand);
+    fs.appendFileSync(appCommandsPath, newCommand);
 
     await browser.displaySuccessHtml(`
       <h1>Command added</h1>
+      ${createdNewFile ? "<h2>New commands file created</h2>" : ""}
       <table>
         <tr>
           <th>Command name</th>

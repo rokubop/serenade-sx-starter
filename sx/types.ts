@@ -50,6 +50,7 @@ export type Config = {
   "commands.bookmarks.open": (name: string) => Trigger;
   "commands.bookmarks.edit": Trigger;
   "commands.bookmarks.show": Trigger;
+  "commands.help": Trigger;
   "commands.hotkeys.new": Trigger;
   "commands.hotkeys.cancel": Trigger;
   "commands.mousePosition.addOrUpdate": NamedTrigger;

@@ -159,6 +159,11 @@ let playUrlMacro = async (api: Api) => {
       await api.delay(50);
     }
   } else {
+    await browser.displayErrorHtml(`
+      <h2>Macro not found</h2>
+      <p>There is no macro for URL: <code>${urlPath}</code></p>
+      <p><command>Show help macros</command></p>
+    `);
     console.log(
       `Tried to run macro, but there is no macro for URL: \n${urlPath}\nUse 'record page macro' to record a macro for this URL.`
     );

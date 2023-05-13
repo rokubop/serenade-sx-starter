@@ -10,6 +10,7 @@ import { AppNameId } from "@/user-data-api/apps/api";
 import { parseJson } from "sx/utils/zod-utils";
 import { mousePositionsDataPath } from "sx/file-paths";
 import { z } from "zod";
+import browser from "sx/browser";
 
 const coordsSchema = z.object({
   x: z.number(),
@@ -41,6 +42,10 @@ export const mousePositionsApi = {
     const data = await crud.getAll();
     const pos = data?.[appNameId]?.[positionName];
     if (!pos) {
+      await browser.displayWarningHtml(`
+        <h2>Mouse position ${positionName} for app ${appNameId} not found.</h2>
+        <p><command>show help mouse positions</command></p>
+      `);
       console.log(
         `Mouse position ${positionName} for app ${appNameId} not found.`
       );

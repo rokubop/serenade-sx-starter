@@ -71,7 +71,7 @@ async function showHelp(api: Api, markdownText: string) {
   await browser.displayMarkdown(api, formattedMd);
 }
 
-command("show help", async (api) => {
+command(config["commands.help"], async (api) => {
   const md = await fs.readFile(
     path.join(process.env.ROOT_DIR, "sx", "help", "main.md"),
     "utf8"

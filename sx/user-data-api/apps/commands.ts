@@ -150,7 +150,6 @@ entriesOf(appsApi.getAllSync()).forEach(([appNameId, appConfig]) => {
 
 command(config["commands.apps.showCommands"], async (api) => {
   const appConfig = await getActiveAppConfig(api);
-  console.log("appConfig", appConfig);
   if (appConfig) {
     const dataPath = path.join(commandsPath, `${appConfig.appNameId}.json`);
     if (fs.existsSync(dataPath)) {

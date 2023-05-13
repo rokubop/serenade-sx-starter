@@ -2,6 +2,7 @@ import sx, { commandMap } from "sx/sx";
 import { forEachKeyVal, CommandID } from "sx/utils";
 
 // WIP. There may be some bugs in this file. Not fully tested.
+
 export const suspendAllCommands = () => {
   let commandIds = [] as CommandID[];
 
