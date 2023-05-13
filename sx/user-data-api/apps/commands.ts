@@ -79,8 +79,10 @@ command(config["commands.apps.register"], async (api, matches) => {
     <h2>App Config</h2>
     <codeblock>${JSON.stringify(DEFAULT_NEW_APP_CONFIG, null, 2)}</codeblock>
     <p class="flex gap-2"><command>${
-      config["commands.apps.editAppConfig"]
-    }</command><command>show help app config</command></p>
+      config["commands.apps.editCommands"]
+    }</command><command>${
+    config["commands.apps.editAppConfig"]
+  }</command><command>show help app config</command></p>
     `);
 });
 
@@ -157,16 +159,6 @@ command(config["commands.apps.editCommands"], async (api) => {
   const workspacePath = config.vsCodeWorkspacePath;
   await openPathInVSCode(workspacePath);
   const [filePath, createdNewFile] = await getOrCreateApp(appConfig);
-  if (createdNewFile) {
-    const filePath = path.join(commandsPath, `${appConfig.appNameId}.json`);
-
-    await browser.displayInfoHtml(`
-<codeblock>
-Created file: "${filePath}"
-Added import to: "/src/main.ts"
-</codeblock>
-  `);
-  }
   await openPathInVSCode(filePath);
 });
 

@@ -15,17 +15,17 @@ You have installed [Serenade](https://serenade.ai)
 
 ## Install
 
-1. Clone this repository locally (same drive as serenade is installed)
+Clone this repository anywhere on your machine.
 
 > Do not clone this folder to `.serenade/scripts`. 
 > That is the output folder
 
-2. After cloning and `cd` to your folder, run:
+After cloning, run the following commands in the root folder of this project:
 ```bash
 npm install
 ```
 
-3. Then, run first time setup script:
+First time setup:
 ```bash
 npm run setup
 ```

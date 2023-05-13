@@ -9,6 +9,7 @@
 | *show help overview* | Getting started and about folder structure |
 | *show help apps* | How to register apps, edit commands, show commands |
 | *show help bookmarks* | Adding, opening, and editing bookmarks |
+| *show help git* | Setting up your private repo and updating from serenade-sx-starter |
 | *show help hotkeys* | How to record, view, and edit hotkeys |
 | *show help macros* | How to record, view, and edit macros |
 | *show help mouse positions* | Show help for setting and clicking mouse 

@@ -87,6 +87,7 @@ command(config["commands.help"], async (api) => {
   ["browser", "browser-api"],
   ["commands", "commands"],
   ["clipboard", "clipboard-api"],
+  ["git", "git"],
   ["hotkeys", "hotkeys"],
   ["json api", "json-api"],
   ["macros", "macros"],
