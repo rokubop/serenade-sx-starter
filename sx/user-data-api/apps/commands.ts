@@ -138,11 +138,11 @@ command(config["commands.apps.showCommands"], async (api) => {
     }
   } else {
     await browser.displayWarningHtml(`
-      <h3>Could not show commands for the focused app.</h3>
-      <div>
-        Say <command>register app <name></command> to register the current app first.
-      </div>
-    `);
+    <h3>Could not show app commands</h3>
+    <h4>App not registered</h4>
+    <div>
+    Focus the app again, then say <command>register app <name></command> to register the app.
+    </div>`);
   }
 });
 
@@ -150,9 +150,10 @@ command(config["commands.apps.editCommands"], async (api) => {
   const appConfig = await getActiveAppConfig(api);
   if (!appConfig) {
     await browser.displayWarningHtml(`
-    <h3>Could not edit app commands for the focused app.</h3>
+    <h3>Could not edit app commands</h3>
+    <h4>App not registered</h4>
     <div>
-      Say <command>register app <name></command> to register the current app first.
+    Focus the app again, then say <command>register app <name></command> to register the app.
     </div>`);
     return;
   }

@@ -15,7 +15,7 @@ You have installed [Serenade](https://serenade.ai)
 
 ## Install
 
-Clone this repository anywhere on your machine.
+Clone this repository anywhere on your machine to your preferred folder name.
 
 > Do not clone this folder to `.serenade/scripts`. 
 > That is the output folder
@@ -33,6 +33,11 @@ npm run setup
 Done! Say "Show help" to get started.
 
 <img src="https://i.imgur.com/Io5pRZm.png"/>
+
+---
+
+You can find serenade-sx example commands for VSCode, Chrome, AutoHotKey, git, npm, etc here:
+[https://github.com/rokubop/serenade-sx-example](https://github.com/rokubop/serenade-sx-example/tree/main/src)
 
 ---
 
