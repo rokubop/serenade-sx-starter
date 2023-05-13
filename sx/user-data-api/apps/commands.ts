@@ -50,7 +50,7 @@ command(config["commands.apps.register"], async (api, matches) => {
         2
       )}</code></pre>
       <br/>
-      <p>Say <command>edit app config</command> to edit the config.</p>
+      <p>Say <command>edit app config</command> to edit the config.</p> If you make manual changes, be sure to run <command>build commands</command> afterwards, or run <code>npm run dev</code>.
   `);
     return;
   }
@@ -70,49 +70,17 @@ command(config["commands.apps.register"], async (api, matches) => {
   await appsApi.add(matches.name, DEFAULT_NEW_APP_CONFIG, { sort: true });
   await browser.displaySuccessHtml(`
     <h1>Registered: <span class="text-2xl rainbow">${appNameId}</span></h1>
+    <p><span class="font-semibold">Next steps:</span> Test that <command>open ${
+      matches.name
+    }</command>, <command>launch ${
+    matches.name
+  }</command>, and <command>focus ${matches.name}</command> work correctly. 
+  <p>If something isn't working correctly or the name is wrong, then you can edit/customize the app config</p>
+    <h2>App Config</h2>
     <codeblock>${JSON.stringify(DEFAULT_NEW_APP_CONFIG, null, 2)}</codeblock>
-    <table>
-      <tr>
-        <td><code>appNameId</code></td>
-        <td>primary ID - used for file names and <code>sx.app("${appNameId}").</code>
-      </tr>
-      <tr>
-        <td><code>spokenName</code></td>
-        <td>used for <command>open ${matches.name}</command>, <command>launch ${
-    matches.name
-  }</command>, and <command>focus ${
-    matches.name
-  }</command>. You can add additional aliases or change this preference any time.</td>
-      </tr>
-      <tr>
-        <td><code>searchName</code></td>
-        <td>used if <code>launchType</code> is set to <code>"search"</code></td>
-      </tr>
-      <tr>
-        <td><code>systemName</code></td>
-        <td>The actual name sent to <code>serenade.app()</code></td>
-      </tr>
-      <tr>
-        <td><code>path</code></td>
-        <td><code>api.getActiveApplication()</code></td>
-      </tr>
-      <tr>
-        <td><code>focusSettleTime</code></td>
-        <td>Additional delay added to <code>await launcher.${appNameId}.focus()</code> for user commands.</td>
-      </tr>
-      <tr>
-        <td><code>launchSettleTime</code></td>
-        <td>Additional delay added to <code>await launcher.${appNameId}.launch()</code> or <code>launcher.${appNameId}.focusOrLaunch()</code> for user commands.</td>
-      </tr>
-      <tr>
-        <td><code>launchType</code></td>
-        <td>Defaults are <code>default</code> or <code>search</code>. You can add your own custom values in <code>sx-config.ts</code>.</td>
-      </tr>
-      <tr>
-        <td><code>focusType</code></td>
-        <td>Defaults to <code>default</code>. You can add your own custom values in <code>sx-config.ts</code>.</td>
-      </tr>
-    </table>
+    <p class="flex gap-2"><command>${
+      config["commands.apps.editAppConfig"]
+    }</command><command>show help app config</command></p>
     `);
 });
 

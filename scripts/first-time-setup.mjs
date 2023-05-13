@@ -106,5 +106,7 @@ function success() {
 
 Voice commands:
 🎤 Say ${green}"show help"${resetColor} to get started.
+
+Run ${blue}npm run dev${resetColor} to start watching for changes.
 `);
 }

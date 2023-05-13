@@ -11,5 +11,5 @@
 | `systemName` | The actual name sent to `serenade.app()` |
 | `focusSettleTime` | Additional delay added to `await launcher.<appNameId>.focus()` for user commands. |
 | `launchSettleTime` | Additional delay added to `await launcher.<appNameId>.launch()` or `launcher.<appNameId>.focusOrLaunch()` for user commands. |
-| `launchType` | Defaults are `default` or `search`. You can add your own custom values in `sx-config.ts`. |
-| `focusType` | Defaults to `default`. You can add your own custom values in `sx-config.ts`. |
+| `launchType` | Defaults are `default` or `search` (Windows only). You can add your own custom launchers in `sx-config.ts`. |
+| `focusType` | Defaults to `default`. You can add your own custom launchers in `sx-config.ts`. |
