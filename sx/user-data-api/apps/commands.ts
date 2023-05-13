@@ -194,3 +194,11 @@ command(
   },
   { autoExecute: true }
 );
+
+command(
+  config["commands.apps.showAppConfig"],
+  async (api) => {
+    await browser.open(appsDataPath);
+  },
+  { autoExecute: true }
+);

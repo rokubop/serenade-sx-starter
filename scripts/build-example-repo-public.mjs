@@ -5,7 +5,7 @@ import git from "simple-git";
 /**
  * Updates or creates ../serenade-sx-example-public to be ready
  * for a git commit to serenade-sx-example. Copies all relevent
- * files from this repository and clears or removes all others.
+ * files from this repository and omits all others.
  */
 const currentDir = process.cwd();
 const outDir = path.join(currentDir, "..", "serenade-sx-example-public");

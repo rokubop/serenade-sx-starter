@@ -41,6 +41,7 @@ export type Config = {
   "commands.apps.focus": (name: string) => Trigger;
   "commands.apps.launch": (name: string) => Trigger;
   "commands.apps.editAppConfig": Trigger;
+  "commands.apps.showAppConfig": Trigger;
   "commands.apps.editCommands": Trigger;
   "commands.apps.showCommands": Trigger;
   "commands.apps.showAllCommands": Trigger;

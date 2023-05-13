@@ -14,6 +14,7 @@ export const defaultConfig: Config = {
   "commands.apps.launch": (name) => [`launch ${name}`],
   "commands.apps.editCommands": ["edit commands"],
   "commands.apps.editAppConfig": ["edit app config"],
+  "commands.apps.showAppConfig": ["show app config"],
   "commands.apps.showCommands": ["show commands"],
   "commands.apps.showAllCommands": ["show all commands"],
   "commands.apps.showGlobalCommands": ["show global commands"],
