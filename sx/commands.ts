@@ -66,9 +66,9 @@ const replacePlaceholdersInMd = (markdownText: string) => {
   return formattedMd;
 };
 
-async function showHelp(api: Api, markdownText: string) {
+async function showHelp(markdownText: string) {
   const formattedMd = replacePlaceholdersInMd(markdownText);
-  await browser.displayMarkdown(api, formattedMd);
+  await browser.displayMarkdown(formattedMd);
 }
 
 command(config["commands.help"], async (api) => {
@@ -76,7 +76,7 @@ command(config["commands.help"], async (api) => {
     path.join(process.env.ROOT_DIR, "sx", "help", "main.md"),
     "utf8"
   );
-  await showHelp(api, md);
+  await showHelp(md);
 });
 
 [
@@ -108,7 +108,7 @@ command(config["commands.help"], async (api) => {
         path.join(process.env.ROOT_DIR, "sx", "help", `${fileName}.md`),
         "utf8"
       );
-      await showHelp(api, md);
+      await showHelp(md);
     },
     { autoExecute: true }
   );
@@ -125,7 +125,7 @@ command("show help <%name%>", async (api, matches) => {
       path.join(process.env.ROOT_DIR, "sx", "help", `${fileName}.md`),
       "utf8"
     );
-    await showHelp(api, md);
+    await showHelp(md);
   } else {
     await browser.displayFileNotFound(matches.name);
   }

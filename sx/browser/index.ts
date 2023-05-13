@@ -182,7 +182,7 @@ function dedentMarkdown(markdownInline) {
   return indent > 0 ? markdownInline.replace(re, "") : markdownInline;
 }
 
-const displayMarkdown = async (api: Api, markdown: string) => {
+const displayMarkdown = async (markdown: string) => {
   const outputPath = messagePath;
   const title = getMarkdownTitle(markdown);
   const content = markdownToHtml(dedentMarkdown(markdown));
@@ -235,10 +235,6 @@ const displayCommands = async (appNameId: SxAnyScope) => {
     .join("")
     .replace(/<%/g, "&#60")
     .replace(/%>/g, "&#62");
-  // .replace(
-  //   /one|two|three|four|five|six|seven|eight|nine|ten/g,
-  //   "&#60num&#62"
-  // );
 
   const appConfig = await getActiveAppConfig(api);
   let title = appConfig?.appNameId;
@@ -280,7 +276,10 @@ const openAny = async (url: string) => {
     return;
   }
 
-  if (url.includes("commands") && url.endsWith(".json")) {
+  const normalizedUrl = path.normalize(url);
+  const pattern = /user-data\/commands\/.*\.json$/;
+
+  if (pattern.test(normalizedUrl)) {
     await displayCommands(path.basename(url, ".json"));
     return;
   }

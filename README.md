@@ -66,7 +66,7 @@ There are many utilities included with sx that will speed up your custom voice c
 
 ## First commands
 
-First, start by focusing an application and registering the app using "register app \<name>"
+First, start by focusing an application and registering the app using "register app <name>"
 
 **Why register apps?**
 
