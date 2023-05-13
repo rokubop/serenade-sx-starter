@@ -1,0 +1,54 @@
+{
+  "name": "serenade-sx",
+  "version": "0.5.0",
+  "description": "A starter template for your serenade custom voice commands using serenade-sx, which includes 60+ power commands and utilities",
+  "main": "src/main.ts",
+  "scripts": {
+    "dev": "tsc --noEmit && node scripts/build.mjs --watch",
+    "build": "tsc --noEmit && node scripts/build.mjs",
+    "setup": "node scripts/first-time-setup.mjs",
+    "build-starter": "node scripts/build-starter-repo-public.mjs",
+    "build-example": "node scripts/build-example-repo-public.mjs",
+    "circular-deps": "madge --circular --ts-config ./tsconfig.json ./src/main.ts"
+  },
+  "keywords": [
+    "template",
+    "starter",
+    "serenade",
+    "voice-commands",
+    "automation",
+    "custom-commands",
+    "sx",
+    "bookmarks",
+    "clipboard",
+    "utils",
+    "macros",
+    "hotkeys",
+    "shortcuts",
+    "URL",
+    "terminal",
+    "AutoHotkey",
+    "Windows"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.1",
+    "@types/markdown-it": "^12.2.3",
+    "@types/node": "^18.16.3",
+    "@typescript-eslint/eslint-plugin": "^5.49.0",
+    "@typescript-eslint/parser": "^5.49.0",
+    "eslint": "^8.33.0",
+    "markdown-it": "^13.0.1",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.4"
+  },
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "esbuild": "0.17.5",
+    "execa": "^7.1.1",
+    "fs-extra": "^11.1.1",
+    "simple-git": "^3.17.0",
+    "zod": "^3.21.4"
+  }
+}

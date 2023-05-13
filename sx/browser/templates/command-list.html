@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Logo and Box</title>
+    <link rel="stylesheet" href="{{commonCss}}" />
+    <style>
+      * {
+        list-style: none;
+      }
+
+      body {
+        font-size: 1rem;
+        line-height: 1.1rem;
+        background-color: rgb(22, 27, 34);
+      }
+
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100%;
+        width: 100%;
+      }
+
+      h1 {
+        font-size: 1.4rem;
+        font-weight: 400;
+        margin-bottom: 0;
+      }
+
+      header {
+        display: flex;
+        padding-top: 20px;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.1rem;
+        font-weight: 400;
+        width: 95%;
+        padding-bottom: 20px;
+        border-bottom: rgb(78, 86, 95) 1px solid;
+      }
+
+      .header-content {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 95%;
+        /* width: min(100%, 600px); */
+      }
+
+      main {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+      }
+
+      .count {
+        font-size: 0.8rem;
+        font-weight: 300;
+        /* margin-left: 4px; */
+      }
+
+      .rows {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        width: min(100%, 800px);
+        padding-left: 0.5rem;
+      }
+
+      .rows > * {
+        align-self: flex-start;
+        flex: 1 1 50%;
+        padding: 0 4px;
+        margin-top: 1rem;
+      }
+
+      .suggestions {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      li {
+        text-indent: -0.5rem;
+      }
+
+      @media screen and (min-width: 768px) {
+        .message-box {
+          max-width: 80%;
+        }
+      }
+
+      @media screen and (min-width: 500px) {
+        .rows > * {
+          flex: 1 1 33%;
+        }
+      }
+
+      @media (min-width: 700px) {
+        .suggestions {
+          display: flex;
+          flex-direction: row;
+        }
+
+        .header-title {
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          gap: 10px;
+        }
+
+        .header-title > span {
+          padding-top: 8px;
+        }
+
+        .rows > * {
+          align-self: flex-start;
+          flex: 1 1 24%;
+          padding: 0 4px;
+          margin-top: 1rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="header-content">
+          <span class="header-title">
+            <h1 class="pb-0">
+              <span class="rainbow text-3xl pb-0">{{title}}</span>
+            </h1>
+            <span class="count">({{count}} commands)</span>
+          </span>
+          <span class="suggestions">
+            <span class="command-container">
+              <span class="command">
+                <span class="command-inner">show commands</span>
+              </span>
+            </span>
+            <span class="command-container">
+              <span class="command">
+                <span class="command-inner">edit commands</span>
+              </span>
+            </span>
+          </span>
+        </div>
+      </header>
+      <main>
+        <div class="rows">{{items}}</div>
+      </main>
+    </div>
+  </body>
+</html>

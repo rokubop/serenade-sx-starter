@@ -1,0 +1,25 @@
+{
+  "compilerOptions": {
+    "target": "es2020",
+    "lib": ["es2020"],
+    "module": "es2022",
+    "moduleResolution": "node",
+    "baseUrl": ".",
+    "resolveJsonModule": true,
+    "allowJs": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitAny": false,
+    "skipLibCheck": false,
+    "paths": {
+      "*": ["./src/*"],
+      "sx": ["./sx"],
+      "sx/*": ["./sx/*"],
+      "@/user-data-api/*": ["./sx/user-data-api/*"],
+      "@/user-data/*": ["./user-data/*"],
+    }
+  },
+  "include": ["src", "sx"],
+  "exclude": ["node_modules", "references"]
+}

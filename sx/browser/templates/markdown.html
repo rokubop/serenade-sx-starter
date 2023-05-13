@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{title}}</title>
+    <link
+      rel="icon"
+      href="https://serenade.ai/favicon-32x32.png?v=5dbf88ccdd1ac77e3de0b78a20740a87"
+      type="image/png"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/prism-themes/1.9.0/prism-atom-dark.min.css"
+      integrity="sha512-GZPS1oCebjx8g/ZkrTTvWirW+4wDkzIsilUQPXcZzuDpDzoH5brM2AojiFjo6ObIWeM68ZDostvdjaS9MNYCTg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="{{commonCss}}" />
+    <style>
+      h2 {
+        border-bottom: 1px solid rgb(48, 54, 61);
+      }
+
+      @media (min-width: 640px) {
+        .sm-flex-row {
+          display: flex;
+          flex-direction: row;
+        }
+      }
+
+      @media screen and (min-width: 768px) {
+        .container {
+          max-width: min(80%, 1000px);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="message-box">{{content}}</div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.27.0/prism.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.27.0/components/prism-json.min.js"></script>
+  </body>
+</html>
