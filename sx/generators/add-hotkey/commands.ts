@@ -1,6 +1,6 @@
 import sx, { Api, browser } from "sx";
 import { addPressKeyCommand } from ".";
-import { commandifyText, runCommandSafe } from "sx/utils";
+import { commandifyText, getActiveAppConfig, runCommandSafe } from "sx/utils";
 import {
   selectivelyDisableCommands,
   selectivelyEnableCommands,
@@ -51,7 +51,7 @@ const captureAnyCommand = sx.global().command(
           <h2>Could not record hotkey</h2>
           <h3>Command did not match <code>press *</code></h3>
           <p>Only simple hotkeys are supported that start with "press". modifiers like "shift", "command", etc. are OK too.</p>
-          <command>show help hotkeys</command>g
+          <command>show help hotkeys</command>
         `,
           {
             commandRan: config["commands.hotkeys.new"][0],
@@ -90,6 +90,19 @@ sx.global().disable(captureAnyCommand);
 const addHotkeyCommand = command(
   config["commands.hotkeys.new"],
   async (api) => {
+    const appConfig = await getActiveAppConfig(api);
+    if (!appConfig) {
+      await browser.displayErrorHtml(`
+<h2>Cannot record hotkey because the app needs to be registered first.</h2>
+<p>Focus the app then say <command>${config["commands.apps.register"]}</command> to register the app.</p>
+<command>Show help apps</command>
+      `);
+      console.log(
+        "Cannot save mouse position because the app needs to be registered first."
+      );
+      console.log(`Say "Register app <name>" to register the app.`);
+      return;
+    }
     console.log(
       'Recording hotkey. Say "stop" or "cancel" to stop. Next steps: Expecting "press shift a" (example), followed by "name of command"'
     );

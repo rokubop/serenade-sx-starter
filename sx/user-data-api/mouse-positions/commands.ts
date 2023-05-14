@@ -23,8 +23,9 @@ command(config["commands.mousePosition.addOrUpdate"], async (api, matches) => {
   const appConfig = await getActiveAppConfig(api);
   if (!appConfig) {
     await browser.displayErrorHtml(`
-<h1>Cannot save mouse position because the app needs to be registered first.</h1>
-<command>Show help app positions</command>
+<h2>Cannot save mouse position because the app needs to be registered first.</h2>
+<p>Focus the app then say <command>${config["commands.apps.register"]}</command> to register the app.</p>
+<command>Show help apps</command>
     `);
     console.log(
       "Cannot save mouse position because the app needs to be registered first."
