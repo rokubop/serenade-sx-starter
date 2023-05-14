@@ -76,9 +76,12 @@ const onMacroStop = async () => {
   if (currentPageMacroUrl) {
     await browser.displaySuccessHtml(
       `
-      <h1>Macro recorded to current URL</h1>
+      <h2>Macro recorded to URL</h2>
+      <codeblock>${currentPageMacroUrl}</codeblock>
       <codeblock>${currentMacro}</codeblock>
       <p>To playback the macro say <command>next page</command> whenever you are on this URL</p>
+      <hr/>
+      <command>${config["commands.macros.urlShow"]}</command><command>${config["commands.macros.urlEdit"]}</command>
       `,
       {
         commandRan: config["commands.macros.record"][0],
@@ -87,13 +90,17 @@ const onMacroStop = async () => {
   } else {
     await browser.displaySuccessHtml(
       `
-      <h1>Macro recorded to cache</h1>
+      <h2>Macro recorded to cache</h2>
       <codeblock>${currentMacro}</codeblock>
       <p>To playback the macro say <command>${
         config["commands.macros.play"][0]
       }</command> or <command>${config["commands.macros.playXTimes"](
         "&lt;num> times"
       )}</command></p>
+      <hr/>
+      <command>${config["commands.macros.show"]}</command><command>${
+        config["commands.macros.edit"]
+      }</command>
       `,
       {
         commandRan: config["commands.macros.record"][0],
@@ -107,6 +114,18 @@ let startMacroCommand = sx.global().command(
   async (api) => {
     if (await isAppActive(api, config.defaultBrowser)) {
       currentPageMacroUrl = await browser.getUrl(api);
+    }
+    const fullPathActiveApp = await api.getActiveApplication();
+    if (fullPathActiveApp.includes("chrome") && !currentPageMacroUrl) {
+      await browser.displayErrorHtml(
+        `
+        <h2>Cannot record URL macro because the app needs to be registered first.</h2>
+        <p>Focus the app then say <command>${config["commands.apps.register"]}</command> to register the app.</p>
+        <p><command>show help apps</command></p>
+      `,
+        { commandRan: config["commands.macros.record"][0] }
+      );
+      return;
     }
     await onMacroStart();
   },
