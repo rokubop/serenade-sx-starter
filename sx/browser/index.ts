@@ -54,9 +54,14 @@ const open = async (url: string) => {
   }
 };
 
+type Options = {
+  commandRan?: string;
+};
+
 const displayTypeHtml = async (
   html: string,
-  type: "success" | "error" | "warning" | "info" | "none"
+  type: "success" | "error" | "warning" | "info" | "none",
+  options?: Options
 ) => {
   const outputPath = messagePath;
 
@@ -70,7 +75,7 @@ const displayTypeHtml = async (
     const messageBoxProps = {
       type,
       body: html,
-      commandRan: lastCommand,
+      commandRan: options?.commandRan ?? lastCommand,
       headerTitle: typeToHeaderTitle[type],
       title: typeToHeaderTitle[type],
       currentTime: new Date().toLocaleTimeString(),
@@ -81,20 +86,20 @@ const displayTypeHtml = async (
   await open(outputPath);
 };
 
-const displayErrorHtml = async (html: string) => {
-  await displayTypeHtml(html, "error");
+const displayErrorHtml = async (html: string, options?: Options) => {
+  await displayTypeHtml(html, "error", options);
 };
 
-const displayWarningHtml = async (html: string) => {
-  await displayTypeHtml(html, "warning");
+const displayWarningHtml = async (html: string, options?: Options) => {
+  await displayTypeHtml(html, "warning", options);
 };
 
-const displayInfoHtml = async (html: string) => {
-  await displayTypeHtml(html, "info");
+const displayInfoHtml = async (html: string, options?: Options) => {
+  await displayTypeHtml(html, "info", options);
 };
 
-const displaySuccessHtml = async (html: string) => {
-  await displayTypeHtml(html, "success");
+const displaySuccessHtml = async (html: string, options?: Options) => {
+  await displayTypeHtml(html, "success", options);
 };
 
 const displayHtml = async (html: string) => {

@@ -19,16 +19,37 @@ const { command } = sx.global();
  *
  * "show bookmarks"
  */
-command(config["commands.bookmarks.add"], async (api, matches) => {
-  const url = await browser.getUrl(api);
-  await bookmarksApi.add(matches.name, url);
-});
+command(
+  config["commands.bookmarks.add"],
+  async (api, matches) => {
+    const url = await browser.getUrl(api);
+    if (url) {
+      await bookmarksApi.add(matches.name, url);
+    } else {
+      await browser.displayErrorHtml(
+        `<p>Could not get url</p>
+        <p><command>show help bookmarks</command></p>`
+      );
+    }
+  },
+  { autoExecute: true }
+);
 
 forEachKeyVal(bookmarksApi.getAllSync(), (name, url) => {
-  command(config["commands.bookmarks.update"](name), async (api, matches) => {
-    const url = await browser.getUrl(api);
-    await bookmarksApi.update(name, url);
-  });
+  command(
+    config["commands.bookmarks.update"](name),
+    async (api, matches) => {
+      const url = await browser.getUrl(api);
+      if (url) {
+        await bookmarksApi.update(name, url);
+      } else {
+        await browser.displayErrorHtml(
+          `<p>Could not get url</p><p><command>show help bookmarks</command></p>`
+        );
+      }
+    },
+    { autoExecute: true }
+  );
 });
 
 forEachKeyVal(bookmarksApi.getAllSync(), (title, url) => {
@@ -41,11 +62,19 @@ forEachKeyVal(bookmarksApi.getAllSync(), (title, url) => {
   );
 });
 
-command(config["commands.bookmarks.edit"], async (api) => {
-  await openPathInVSCode(config.vsCodeWorkspacePath);
-  await openPathInVSCode(bookmarksDataPath);
-});
+command(
+  config["commands.bookmarks.edit"],
+  async (api) => {
+    await openPathInVSCode(config.vsCodeWorkspacePath);
+    await openPathInVSCode(bookmarksDataPath);
+  },
+  { autoExecute: true }
+);
 
-command(config["commands.bookmarks.show"], async (api) => {
-  await browser.open(bookmarksDataPath);
-});
+command(
+  config["commands.bookmarks.show"],
+  async (api) => {
+    await browser.open(bookmarksDataPath);
+  },
+  { autoExecute: true }
+);

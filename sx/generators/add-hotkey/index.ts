@@ -41,7 +41,11 @@ export async function addPressKeyCommand(
 
     await browser.displaySuccessHtml(`
       <h1>Command added</h1>
-      ${createdNewFile ? "<h2>New commands file created</h2>" : ""}
+      ${
+        createdNewFile
+          ? `<h2>New commands file created</h2><codeblock>${appCommandsPath}</codeblock>`
+          : ""
+      }
       <table>
         <tr>
           <th>Command name</th>
@@ -52,7 +56,11 @@ export async function addPressKeyCommand(
           <td>${keyAndModifiers}</td>
         </tr>
       </table>
-      <command>${config["commands.apps.editCommands"][0]}</command>
+      To edit or view the hotkey, focus the application, then say <command>${
+        config["commands.apps.editCommands"][0]
+      }</command> or <command>${
+      config["commands.apps.showCommands"][0]
+    }</command>
     `);
 
     console.log(`Added command to ${appCommandsPath}`);

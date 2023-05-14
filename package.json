@@ -7,8 +7,9 @@
     "dev": "tsc --noEmit && node scripts/build.mjs --watch",
     "build": "tsc --noEmit && node scripts/build.mjs",
     "setup": "node scripts/first-time-setup.mjs",
-    "build-starter": "node scripts/build-starter-repo-public.mjs",
     "build-example": "node scripts/build-example-repo-public.mjs",
+    "build-starter": "node scripts/build-starter-repo-public.mjs",
+    "build-public": "npm run build-example && npm run build-starter",
     "circular-deps": "madge --circular --ts-config ./tsconfig.json ./src/main.ts"
   },
   "keywords": [

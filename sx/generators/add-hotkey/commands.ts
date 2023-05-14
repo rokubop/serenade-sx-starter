@@ -46,12 +46,17 @@ const captureAnyCommand = sx.global().command(
         modifiers = keyComboParts.slice(0, keyComboParts.length - 1);
         await runActualCommandInsteadOfCapture(api, pressKeyCommand);
       } else {
-        await browser.displayErrorHtml(`
+        await browser.displayErrorHtml(
+          `
           <h2>Could not record hotkey</h2>
           <h3>Command did not match <code>press *</code></h3>
-          <p>Only simple hotkeys are supported.</p>
-          <command>show help hotkeys</command>
-        `);
+          <p>Only simple hotkeys are supported that start with "press". modifiers like "shift", "command", etc. are OK too.</p>
+          <command>show help hotkeys</command>g
+        `,
+          {
+            commandRan: config["commands.hotkeys.new"][0],
+          }
+        );
         console.log(
           `Could not record hotkey. To record a hotkey, say 
 1. 'add hotkey' or 'add shortcut', 

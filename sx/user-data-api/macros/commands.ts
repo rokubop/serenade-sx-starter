@@ -73,15 +73,20 @@ const onMacroStop = async () => {
     console.log(`recorded macro: ${currentMacroName}`);
     await urlMacrosApi.update(currentPageMacroUrl, currentMacro);
   }
-  await browser.displaySuccessHtml(`
+  await browser.displaySuccessHtml(
+    `
     <h1>Macro recorded to cache</h1>
     <codeblock>${currentMacro}</codeblock>
     <p>To playback the macro say <command>${
       config["commands.macros.play"][0]
     }</command> or <command>${config["commands.macros.playXTimes"](
-    "<number> times"
-  )}</command></p>
-    `);
+      "&lt;num> times"
+    )}</command></p>
+    `,
+    {
+      commandRan: config["commands.macros.record"][0],
+    }
+  );
 };
 
 let startMacroCommand = sx.global().command(
@@ -114,16 +119,23 @@ const captureAnyCommand = sx.global().command(
       return;
     }
     currentMacro.push(literalCommand);
-    preventInfiniteLoop();
+    await preventInfiniteLoop();
     await runActualCommandInsteadOfCapture(api, literalCommand);
   },
   { autoExecute: true }
 );
 sx.global().disable(captureAnyCommand);
 
-function preventInfiniteLoop() {
+async function preventInfiniteLoop() {
   if (currentMacro.length > 30) {
     void onMacroStop();
+    await browser.displayErrorHtml(
+      `
+      <p>There was an error trying to record the macro - stopping macro - sorry! Try again</p>
+      <p><command>show help macros</command></p>
+    `,
+      { commandRan: config["commands.macros.record"][0] }
+    );
     throw new Error(
       "infinite loop detected - stopping macro - sorry! Try again"
     );
@@ -141,7 +153,9 @@ async function runActualCommandInsteadOfCapture(
     await runCommandSafe(api, literalCommand);
   } catch (e) {
     await browser.displayErrorHtml(
-      `Error while trying to record macro. running command: <command>${literalCommand}</command>. Stopping macro.`
+      `<p>Error while trying to record macro. running command: <command>${literalCommand}</command>. Stopping macro.</p>
+      <p><command>show help macros</command></p>`,
+      { commandRan: config["commands.macros.record"][0] }
     );
     console.log("error: ", e);
     await onMacroStop();
@@ -162,7 +176,7 @@ let playUrlMacro = async (api: Api) => {
     await browser.displayErrorHtml(`
       <h2>Macro not found</h2>
       <p>There is no macro for URL: <code>${urlPath}</code></p>
-      <p><command>Show help macros</command></p>
+      <p><command>show help macros</command></p>
     `);
     console.log(
       `Tried to run macro, but there is no macro for URL: \n${urlPath}\nUse 'record page macro' to record a macro for this URL.`
