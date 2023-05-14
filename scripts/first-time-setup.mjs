@@ -90,10 +90,15 @@ async function runBuild() {
   } catch (error) {
     console.error(
       `${yellow}Warn: ${resetColor}Could not execute "npm run build". 
+      ${
+        process.platform === "win32"
+          ? `
+- Try a unix based shell such as WSL or Git Bash.`
+          : ""
+      }
+- Make sure to run "npm install" first before "npm run setup".
 
-Make sure to run "npm install" first before "npm run setup".
-
-If "npm run setup" is still failing, you can try to run "npm run build" manually.
+- If "npm run setup" is still failing, you can try to run "npm run build" manually.
       `
     );
   }
