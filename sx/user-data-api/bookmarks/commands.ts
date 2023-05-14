@@ -19,21 +19,17 @@ const { command } = sx.global();
  *
  * "show bookmarks"
  */
-command(
-  config["commands.bookmarks.add"],
-  async (api, matches) => {
-    const url = await browser.getUrl(api);
-    if (url) {
-      await bookmarksApi.add(matches.name, url);
-    } else {
-      await browser.displayErrorHtml(
-        `<p>Could not get url</p>
+command(config["commands.bookmarks.add"], async (api, matches) => {
+  const url = await browser.getUrl(api);
+  if (url) {
+    await bookmarksApi.add(matches.name, url);
+  } else {
+    await browser.displayErrorHtml(
+      `<p>Could not get url</p>
         <p><command>show help bookmarks</command></p>`
-      );
-    }
-  },
-  { autoExecute: true }
-);
+    );
+  }
+});
 
 forEachKeyVal(bookmarksApi.getAllSync(), (name, url) => {
   command(

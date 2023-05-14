@@ -73,20 +73,33 @@ const onMacroStop = async () => {
     console.log(`recorded macro: ${currentMacroName}`);
     await urlMacrosApi.update(currentPageMacroUrl, currentMacro);
   }
-  await browser.displaySuccessHtml(
-    `
-    <h1>Macro recorded to cache</h1>
-    <codeblock>${currentMacro}</codeblock>
-    <p>To playback the macro say <command>${
-      config["commands.macros.play"][0]
-    }</command> or <command>${config["commands.macros.playXTimes"](
-      "&lt;num> times"
-    )}</command></p>
-    `,
-    {
-      commandRan: config["commands.macros.record"][0],
-    }
-  );
+  if (currentPageMacroUrl) {
+    await browser.displaySuccessHtml(
+      `
+      <h1>Macro recorded to current URL</h1>
+      <codeblock>${currentMacro}</codeblock>
+      <p>To playback the macro say <command>next page</command> whenever you are on this URL</p>
+      `,
+      {
+        commandRan: config["commands.macros.record"][0],
+      }
+    );
+  } else {
+    await browser.displaySuccessHtml(
+      `
+      <h1>Macro recorded to cache</h1>
+      <codeblock>${currentMacro}</codeblock>
+      <p>To playback the macro say <command>${
+        config["commands.macros.play"][0]
+      }</command> or <command>${config["commands.macros.playXTimes"](
+        "&lt;num> times"
+      )}</command></p>
+      `,
+      {
+        commandRan: config["commands.macros.record"][0],
+      }
+    );
+  }
 };
 
 let startMacroCommand = sx.global().command(
