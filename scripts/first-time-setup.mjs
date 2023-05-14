@@ -78,22 +78,56 @@ function sxConfigSetup() {
 }
 sxConfigSetup();
 
+if (!fs.existsSync(path.join(os.homedir(), ".serenade"))) {
+  console.log("platform detected: " + os.platform());
+  console.log(
+    `Tried to find serenade directory at ${blue}${os.homedir()}${resetColor}.`
+  );
+  console.log('Could not find "~/.serenade" directory.');
+  console.log(
+    `Try running ${blue}npm run setup${resetColor} again on the same drive as your ${blue}~/.serenade${resetColor} directory.`
+  );
+}
+
 async function runBuild() {
-  let subprocess;
+  let result;
   try {
+    console.log("platform detected: " + os.platform());
+    console.log(
+      `Assuming ${blue}~/.serenade${resetColor} directory is: ${blue}${os.homedir()}${resetColor}.`
+    );
+    console.log(
+      `If this is wrong, you may need to run ${blue}npm run setup${resetColor} again on the same drive as your ${blue}~/.serenade${resetColor} directory.`
+    );
+    console.log("");
+    console.log(`running ${blue}npm run build${resetColor}...`);
     if (os.platform() === "win32") {
-      await execa("powershell.exe", ["npm", "--prefix", cwd, "run", "build"]);
+      result = await execa("powershell.exe", [
+        "npm",
+        "--prefix",
+        cwd,
+        "run",
+        "build",
+      ]);
     } else {
-      await execa("bash", ["-c", `npm --prefix ${cwd} run build`]);
+      result = await execa("bash", ["-c", `npm --prefix ${cwd} run build`]);
     }
-    success();
+    if (result.stderr) {
+      throw new Error(result.stderr);
+    } else {
+      console.log(result.stdout);
+      console.log("");
+      success();
+    }
   } catch (error) {
+    console.error(error);
     console.error(
       `${yellow}Warn: ${resetColor}Could not execute "npm run build". 
       ${
         process.platform === "win32"
           ? `
-- Try a unix based shell such as WSL or Git Bash.`
+- Try a unix based shell such as Git Bash or WSL and try "npm install" and "npm run setup" again.
+`
           : ""
       }
 - Make sure to run "npm install" first before "npm run setup".
