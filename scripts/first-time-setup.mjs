@@ -126,7 +126,7 @@ async function runBuild() {
       ${
         process.platform === "win32"
           ? `
-- Try a unix based shell such as Git Bash or WSL and try "npm install" and "npm run setup" again.
+- Can try a different shell such as PowerShell, Git Bash, or WSL and try "npm install" and "npm run setup" again.
 `
           : ""
       }

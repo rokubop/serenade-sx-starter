@@ -14,17 +14,19 @@ You have installed [Serenade](https://serenade.ai)
 
 ## Install
 
-Clone this repository anywhere on your machine to your preferred folder name.
+Clone this repository to your preferred folder name.
 
 > Do not clone this folder to `.serenade/scripts`. 
 > That is the output folder
 
-After cloning, run the following commands in the root folder of this project:
+Window users recommend to use PowerShell or Git Bash for setup
+
+After cloning, cd to the folder and run:
 ```bash
 npm install
 ```
 
-First time setup:
+Then run first time setup:
 ```bash
 npm run setup
 ```
