@@ -10,7 +10,6 @@ This is a starter template for your serenade custom scripts using **serenade-sx*
 You have installed [Serenade](https://serenade.ai)
 
 ## Features
-- Say "Show help" to see all features and documentation
 - Bookmarks, macros, shortcuts, mouse positions, JSON API, browser display, clipboard, AutoHotKey api, and more
 
 ## Install
