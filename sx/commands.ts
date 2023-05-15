@@ -23,7 +23,18 @@ command(config["commands.general.openSerenadeLog"], async (api) => {
 });
 
 command(config["commands.general.buildCommands"], async (api) => {
-  void npmRunBuild();
+  try {
+    const childProcess = await npmRunBuild();
+    await browser.displaySuccessHtml(`
+    <codeblock>${childProcess.stdout}</codeblock>
+    `);
+  } catch (err: any) {
+    await browser.displayErrorHtml(`
+    ${err.stderr ? `<codeblock>${err.stderr}</codeblock>` : ""}
+      <codeblock>${JSON.stringify(err, null, 2)}</codeblock>
+      <command>open sereande.log</command>
+    `);
+  }
 });
 
 /**

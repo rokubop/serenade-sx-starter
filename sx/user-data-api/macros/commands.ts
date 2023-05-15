@@ -78,10 +78,12 @@ const onMacroStop = async () => {
       `
       <h2>Macro recorded to URL</h2>
       <codeblock>${currentPageMacroUrl}</codeblock>
-      <codeblock>${currentMacro}</codeblock>
+      <codeblock>${currentMacro.join(", ")}</codeblock>
       <p>To playback the macro say <command>next page</command> whenever you are on this URL</p>
       <hr/>
-      <command>${config["commands.macros.urlShow"]}</command><command>${config["commands.macros.urlEdit"]}</command>
+      <command>${config["commands.macros.urlShow"]}</command><command>${
+        config["commands.macros.urlEdit"]
+      }</command>
       `,
       {
         commandRan: config["commands.macros.record"][0],
@@ -91,7 +93,7 @@ const onMacroStop = async () => {
     await browser.displaySuccessHtml(
       `
       <h2>Macro recorded to cache</h2>
-      <codeblock>${currentMacro}</codeblock>
+      <codeblock>${currentMacro.join(", ")}</codeblock>
       <p>To playback the macro say <command>${
         config["commands.macros.play"][0]
       }</command> or <command>${config["commands.macros.playXTimes"](

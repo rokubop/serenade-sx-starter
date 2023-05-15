@@ -37,15 +37,19 @@ async function sleep(ms: number) {
  */
 let timer: NodeJS.Timeout;
 
-async function debounce(
-  fn: (...args: any[]) => any,
+async function debounce<T>(
+  fn: (...args: any[]) => Promise<T>,
   timeout: number
-): Promise<void> {
-  return new Promise((resolve) => {
+): Promise<T> {
+  return new Promise((resolve, reject) => {
     clearTimeout(timer);
     timer = setTimeout(async () => {
-      await fn();
-      resolve();
+      try {
+        const result = await fn();
+        resolve(result);
+      } catch (err) {
+        reject(err);
+      }
     }, timeout);
   });
 }

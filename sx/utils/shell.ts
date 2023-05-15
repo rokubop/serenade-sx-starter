@@ -1,4 +1,4 @@
-import { execa } from "execa";
+import { execa, ExecaReturnValue } from "execa";
 import { debounce, isLinux, isMac, isWindows } from "./utils";
 
 /**
@@ -6,11 +6,11 @@ import { debounce, isLinux, isMac, isWindows } from "./utils";
  *
  * call this after making any file changes programatically
  */
-export async function npmRunBuild() {
-  await debounce(async () => {
+export async function npmRunBuild(): Promise<ExecaReturnValue<string>> {
+  const childProcess = await debounce(async () => {
     console.log('Running "npm run build" in the root directory');
     if (isWindows()) {
-      void execa("powershell.exe", [
+      return await execa("powershell.exe", [
         "npm",
         "--prefix",
         process.env.ROOT_DIR,
@@ -18,10 +18,12 @@ export async function npmRunBuild() {
         "build",
       ]);
     } else {
-      void execa("bash", [
+      return await execa("bash", [
         "-c",
         `npm --prefix ${process.env.ROOT_DIR} run build`,
       ]);
     }
   }, 100);
+
+  return childProcess;
 }
