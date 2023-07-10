@@ -48,7 +48,7 @@ async function clipboardInjectAndPaste(
 ) {
   const prevVal = await getClipboard();
   await setClipboard(currentValue, options);
-  await sleep(300);
+  await sleep(150);
   await paste();
   await setClipboard(prevVal);
 }
