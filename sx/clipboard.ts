@@ -50,7 +50,7 @@ async function clipboardInjectAndPaste(
   await setClipboard(currentValue, options);
   await sleep(150);
   await paste();
-  await setClipboard(prevVal);
+  await setClipboard(prevVal, options);
 }
 
 export { getClipboard, setClipboard, clipboardInjectAndPaste, copy, paste };
